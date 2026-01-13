@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Filter Bar Styling */
+.filter-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
+
+.filter-controls { display: flex; gap: 12px; align-items: center; }
+
+.filter-main { font-weight: bold; font-size: 14px; margin-right: 15px; }
+
+.drop-btn {
+    background: #E5E7EB; /* Light grey for buttons */
+    border: none;
+    padding: 8px 16px;
+    font-size: 13px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.sort-action-btn {
+    background-color: #5F7A77; /* Teal-grey sort button */
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Dropdown Content */
+.dropdown { position: relative; display: inline-block; }
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ddd;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    z-index: 10;
+}
+.dropdown-content a {
+    color: black;
+    padding: 10px 14px;
+    text-decoration: none;
+    display: block;
+    font-size: 12px;
+}
+.dropdown:hover .dropdown-content { display: block; }
+.dropdown:hover .drop-btn { background-color: #d1d5db; }
+
+/* Core Styling */
+body {
+    font-family: 'Times New Roman', serif;
+    margin: 0;
+    color: #333;
+}
+
+.men-collection-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Filter Bar */
+.filter-bar {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 30px;
+}
+
+.left-filters { display: flex; gap: 10px; align-items: center; }
+
+.filter-main { font-weight: bold; font-size: 14px; margin-right: 15px; }
+
+.drop-btn {
+    background: #E5E7EB;
+    border: none;
+    padding: 8px 16px;
+    font-size: 13px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.sort-btn {
+    background: #5F7A77; /* Specific grey-teal for sort button */
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Dropdown Content */
+.dropdown { position: relative; display: inline-block; }
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ddd;
+    min-width: 160px;
+    z-index: 10;
+}
+.dropdown-content a {
+    color: black;
+    padding: 8px 12px;
+    text-decoration: none;
+    display: block;
+    font-size: 12px;
+}
+.dropdown:hover .dropdown-content { display: block; }
+.dropdown-content a:hover { background-color: #f1f1f1; }
+
+/* Product Grid */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 items per row */
+    gap: 20px;
+}
+
+.product-card {
+    background: white;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.product-img {
+    background-color: #f9f9f9;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.product-img img { max-width: 100%; height: auto; object-fit: contain; }
+
+.product-info { padding: 15px; text-align: left; }
+
+.brand-name { font-size: 14px; font-weight: bold; margin: 0; }
+.product-desc { font-size: 12px; color: #666; margin: 5px 0; height: 32px; overflow: hidden; }
+
+.rating { color: #facc15; font-size: 12px; margin-bottom: 10px; }
+.price { font-weight: bold; font-size: 14px; margin: 5px 0; }
+
+/* Color Swatches */
+.color-options { font-size: 12px; margin-bottom: 15px; display: flex; align-items: center; gap: 5px; }
+.swatch { width: 14px; height: 14px; border: 1px solid #ccc; display: inline-block; border-radius: 2px; }
+.black { background: black; }
+.brown { background: #78350f; }
+.white { background: white; }
+.red { background: red; }
+
+/* Action Buttons */
+.card-buttons { display: flex; gap: 8px; }
+
+.buy-now {
+    flex: 1;
+    background: white;
+    border: 1px solid #333;
+    padding: 6px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.add-cart {
+    flex: 1;
+    background: #2D4A47; /* StepUp Primary Green */
+    color: white;
+    border: none;
+    padding: 6px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 1024px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .product-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+  
+<div id="header-placeholder"></div>
+<div class="men-collection-container">
+    <header class="filter-bar">
+        <div class="left-filters">
+            <span class="filter-main">Filters <i class="fa fa-arrow-left"></i></span>
+            
+            <div class="dropdown">
+                <button class="drop-btn">Style <i class="fa fa-caret-down"></i></button>
+                <div class="dropdown-content">
+                    <a href="#">New Arrivals</a>
+                    <a href="#">Sandals</a>
+                    <a href="#">Trainers</a>
+                    <a href="#">Boots</a>
+                    <a href="#">Slippers</a>
+                    <a href="#">Canvas</a>
+                    <a href="#">Summer Shop</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="drop-btn">Size <i class="fa fa-caret-down"></i></button>
+                <div class="dropdown-content">
+                    <a href="#">Junior</a>
+                    <a href="#">UK(3)</a>
+                    <a href="#">UK(4)</a>
+                    <a href="#">Senior</a>
+                    <a href="#">UK(3)</a>
+                    <a href="#">UK(4)</a>
+                    <a href="#">UK(5)</a>
+                    <a href="#">UK(6)</a>
+                    <a href="#">UK(7)</a>
+
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="drop-btn">Brands <i class="fa fa-caret-down"></i></button>
+                 <div class="dropdown-content">
+                    <a href="#">Becket</a>
+                    <a href="#">Comfy steps</a>
+                    <a href="#">Kickers</a>
+                    <a href="#">Lambretta</a>
+                    <a href="#">Marvel</a>
+                    <a href="#">Skechers</a>
+                    <a href="#">Totes</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="drop-btn">Color <i class="fa fa-caret-down"></i></button>
+            </div>
+        </div>
+        <button class="sort-btn">Sort by</button>
+    </header>
+
+    <main class="product-grid">
+        <div class="product-card">
+            <div class="product-img">
+                <img src="m1.png" alt="Comfy Steps Boat Shoe">
+            </div>
+            <div class="product-info">
+                <h3 class="brand-name">Comfy Steps</h3>
+                <p class="product-desc">Harlan Mens Tan Boat Shoe</p>
+                <div class="rating">
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                </div>
+                <p class="price">MRP ₹ 2,799</p>
+                <div class="color-options">
+                    Color <span class="swatch black"></span><span class="swatch brown"></span><span class="swatch white"></span>
+                </div>
+                <div class="card-buttons">
+                    <button class="buy-now">Buy</button>
+                    <button class="add-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="product-img"><img src="m2.png" alt="XL Trainer"></div>
+            <div class="product-info">
+                <h3 class="brand-name">XL</h3>
+                <p class="product-desc">Weaver Mens Lace Up Trainer</p>
+                <div class="rating">
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa-regular fa-star"></i>
+                </div>
+                <p class="price">MRP ₹ 1,799</p>
+                <div class="color-options">
+                    Color <span class="swatch black"></span><span class="swatch red"></span><span class="swatch white"></span>
+                </div>
+                <div class="card-buttons">
+                    <button class="buy-now">Buy</button>
+                    <button class="add-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+         <div class="product-card">
+            <div class="product-img">
+                <img src="m3.png" alt="Comfy Steps Boat Shoe">
+            </div>
+            <div class="product-info">
+                <h3 class="brand-name">Comfy Steps</h3>
+                <p class="product-desc">Harlan Mens Tan Boat Shoe</p>
+                <div class="rating">
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                </div>
+                <p class="price">MRP ₹ 2,799</p>
+                <div class="color-options">
+                    Color <span class="swatch black"></span><span class="swatch brown"></span><span class="swatch white"></span>
+                </div>
+                <div class="card-buttons">
+                    <button class="buy-now">Buy</button>
+                    <button class="add-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="product-img"><img src="m4.png" alt="XL Trainer"></div>
+            <div class="product-info">
+                <h3 class="brand-name">XL</h3>
+                <p class="product-desc">Weaver Mens Lace Up Trainer</p>
+                <div class="rating">
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa-regular fa-star"></i>
+                </div>
+                <p class="price">MRP ₹ 1,799</p>
+                <div class="color-options">
+                    Color <span class="swatch black"></span><span class="swatch red"></span><span class="swatch white"></span>
+                </div>
+                <div class="card-buttons">
+                    <button class="buy-now">Buy</button>
+                    <button class="add-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+         <div class="product-card">
+            <div class="product-img">
+                <img src="m5.png" alt="Comfy Steps Boat Shoe">
+            </div>
+            <div class="product-info">
+                <h3 class="brand-name">Comfy Steps</h3>
+                <p class="product-desc">Harlan Mens Tan Boat Shoe</p>
+                <div class="rating">
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                </div>
+                <p class="price">MRP ₹ 2,799</p>
+                <div class="color-options">
+                    Color <span class="swatch black"></span><span class="swatch brown"></span><span class="swatch white"></span>
+                </div>
+                <div class="card-buttons">
+                    <button class="buy-now">Buy</button>
+                    <button class="add-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="product-img"><img src="m6.png" alt="XL Trainer"></div>
+            <div class="product-info">
+                <h3 class="brand-name">XL</h3>
+                <p class="product-desc">Weaver Mens Lace Up Trainer</p>
+                <div class="rating">
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa-regular fa-star"></i>
+                </div>
+                <p class="price">MRP ₹ 1,799</p>
+                <div class="color-options">
+                    Color <span class="swatch black"></span><span class="swatch red"></span><span class="swatch white"></span>
+                </div>
+                <div class="card-buttons">
+                    <button class="buy-now">Buy</button>
+                    <button class="add-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+         <div class="product-card">
+            <div class="product-img">
+                <img src="m7.png" alt="Comfy Steps Boat Shoe">
+            </div>
+            <div class="product-info">
+                <h3 class="brand-name">Comfy Steps</h3>
+                <p class="product-desc">Harlan Mens Tan Boat Shoe</p>
+                <div class="rating">
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                </div>
+                <p class="price">MRP ₹ 2,799</p>
+                <div class="color-options">
+                    Color <span class="swatch black"></span><span class="swatch brown"></span><span class="swatch white"></span>
+                </div>
+                <div class="card-buttons">
+                    <button class="buy-now">Buy</button>
+                    <button class="add-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="product-img"><img src="m8.png" alt="XL Trainer"></div>
+            <div class="product-info">
+                <h3 class="brand-name">XL</h3>
+                <p class="product-desc">Weaver Mens Lace Up Trainer</p>
+                <div class="rating">
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa-regular fa-star"></i>
+                </div>
+                <p class="price">MRP ₹ 1,799</p>
+                <div class="color-options">
+                    Color <span class="swatch black"></span><span class="swatch red"></span><span class="swatch white"></span>
+                </div>
+                <div class="card-buttons">
+                    <button class="buy-now">Buy</button>
+                    <button class="add-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+         <div class="product-card">
+            <div class="product-img">
+                <img src="m9.png" alt="Comfy Steps Boat Shoe">
+            </div>
+            <div class="product-info">
+                <h3 class="brand-name">Comfy Steps</h3>
+                <p class="product-desc">Harlan Mens Tan Boat Shoe</p>
+                <div class="rating">
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                </div>
+                <p class="price">MRP ₹ 2,799</p>
+                <div class="color-options">
+                    Color <span class="swatch black"></span><span class="swatch brown"></span><span class="swatch white"></span>
+                </div>
+                <div class="card-buttons">
+                    <button class="buy-now">Buy</button>
+                    <button class="add-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="product-img"><img src="m10.png" alt="XL Trainer"></div>
+            <div class="product-info">
+                <h3 class="brand-name">XL</h3>
+                <p class="product-desc">Weaver Mens Lace Up Trainer</p>
+                <div class="rating">
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa-regular fa-star"></i>
+                </div>
+                <p class="price">MRP ₹ 1,799</p>
+                <div class="color-options">
+                    Color <span class="swatch black"></span><span class="swatch red"></span><span class="swatch white"></span>
+                </div>
+                <div class="card-buttons">
+                    <button class="buy-now">Buy</button>
+                    <button class="add-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+         <div class="product-card">
+            <div class="product-img">
+                <img src="m11.png" alt="Comfy Steps Boat Shoe">
+            </div>
+            <div class="product-info">
+                <h3 class="brand-name">Comfy Steps</h3>
+                <p class="product-desc">Harlan Mens Tan Boat Shoe</p>
+                <div class="rating">
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                </div>
+                <p class="price">MRP ₹ 2,799</p>
+                <div class="color-options">
+                    Color <span class="swatch black"></span><span class="swatch brown"></span><span class="swatch white"></span>
+                </div>
+                <div class="card-buttons">
+                    <button class="buy-now">Buy</button>
+                    <button class="add-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="product-img"><img src="m12.png" alt="XL Trainer"></div>
+            <div class="product-info">
+                <h3 class="brand-name">XL</h3>
+                <p class="product-desc">Weaver Mens Lace Up Trainer</p>
+                <div class="rating">
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa-regular fa-star"></i>
+                </div>
+                <p class="price">MRP ₹ 1,799</p>
+                <div class="color-options">
+                    Color <span class="swatch black"></span><span class="swatch red"></span><span class="swatch white"></span>
+                </div>
+                <div class="card-buttons">
+                    <button class="buy-now">Buy</button>
+                    <button class="add-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        
+        </main>
+</div>
+<div id="footer-placeholder"></div>
+     <script>
+        function includeHTML(file, targetId) {
+    fetch(file)
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById(targetId).innerHTML = data;
+        })
+        .catch(error => console.error('Error loading HTML:', error));
+}
+
+// Call the function for the header and footer
+includeHTML('header.html', 'header-placeholder');
+includeHTML('footer.html', 'footer-placeholder');
+     </script>
+</body>
+</html>

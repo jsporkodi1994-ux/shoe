@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+    font-family: 'Times New Roman', serif;
+    background-color: #fff;
+    margin: 0;
+    color: #333;
+}
+
+.track-container {
+    max-width: 500px;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+    min-height: 100vh;
+}
+
+/* Header */
+.track-header { padding: 20px; font-weight: bold; }
+.back-btn { text-decoration: none; color: #333; font-size: 18px; }
+
+/* Order Brief */
+.order-brief {
+    display: flex;
+    padding: 0 20px 20px;
+    gap: 15px;
+}
+
+.brief-img { width: 100px; height: 100px; border-radius: 12px; object-fit: cover; }
+
+.brief-top { display: flex; justify-content: space-between; font-size: 10px; color: #666; width: 100%; }
+
+.brief-text h3 { margin: 5px 0; font-size: 16px; }
+.brief-text p { margin: 2px 0; font-size: 12px; color: #444; }
+.exp-date { color: #888 !important; margin-top: 5px !important; }
+
+/* Timeline Section */
+.timeline-container {
+    background-color: #f0f0f0; /* Light grey background for timeline area */
+    padding: 40px 20px;
+    height: 100%;
+}
+
+.timeline { position: relative; }
+
+.timeline-item {
+    display: flex;
+    gap: 20px;
+    padding-bottom: 50px;
+    position: relative;
+}
+
+/* The vertical line */
+.timeline-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 25px;
+    top: 50px;
+    width: 2px;
+    height: 50px;
+}
+
+/* Completed vs Pending Line Colors */
+.timeline-item.completed:not(:last-child)::after { background-color: #2D4A47; }
+.timeline-item.pending::after { border-left: 2px dotted #999; }
+
+/* Icon Circles */
+.status-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    z-index: 2;
+    font-size: 18px;
+}
+
+.completed .status-icon { background-color: #2D4A47; } /* StepUp Brand Teal */
+.pending .status-icon { background-color: #8fa1a0; }    /* Faded Teal for pending */
+
+/* Content Styling */
+.status-content h4 { margin: 0; color: #5f7a77; font-size: 16px; }
+.status-content p { margin: 5px 0 0; font-size: 14px; }
+.pending .status-content h4, .pending .status-content p { color: #8fa1a0; }
+    </style>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+    <div class="track-container">
+    <header class="track-header">
+        <a href="#" class="back-btn"><i class="fa fa-chevron-left"></i> Your Order</a>
+    </header>
+
+    <div class="order-brief">
+        <img src="cart.png" alt="Comfy Steps Shoe" class="brief-img">
+        <div class="brief-text">
+            <div class="brief-top">
+                <span class="order-no">Order no #Bh2100006</span>
+                <span class="payment-method">Cash on Delivery ₹ 2,799</span>
+            </div>
+            <h3>Comfy Steps</h3>
+            <p>Harlan Mens Tan Boat Shoe</p>
+            <p class="exp-date">Exp : Delivery by sun, May 31</p>
+        </div>
+    </div>
+
+    <div class="timeline-container">
+        <div class="timeline">
+            <div class="timeline-item completed">
+                <div class="status-icon"><i class="fa fa-shopping-cart"></i></div>
+                <div class="status-content">
+                    <h4>Order Placed</h4>
+                    <p><strong>May 21,2025 | 03:45 pm</strong></p>
+                </div>
+            </div>
+
+            <div class="timeline-item completed">
+                <div class="status-icon"><i class="fa fa-house-chimney"></i></div>
+                <div class="status-content">
+                    <h4>Order Dispatched</h4>
+                    <p><strong>May 22,2025 | 11:45 am</strong></p>
+                </div>
+            </div>
+
+            <div class="timeline-item completed">
+                <div class="status-icon"><i class="fa fa-truck"></i></div>
+                <div class="status-content">
+                    <h4>Order in transit</h4>
+                    <p><strong>Reached at Tenkasi, Post office</strong></p>
+                </div>
+            </div>
+
+            <div class="timeline-item pending">
+                <div class="status-icon"><i class="fa fa-thumbs-up"></i></div>
+                <div class="status-content">
+                    <h4>Delivered successfully</h4>
+                    <p>Not delivered yet</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="footer-placeholder"></div>
+     <script>
+        function includeHTML(file, targetId) {
+    fetch(file)
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById(targetId).innerHTML = data;
+        })
+        .catch(error => console.error('Error loading HTML:', error));
+}
+
+// Call the function for the header and footer
+includeHTML('header.html', 'header-placeholder');
+includeHTML('footer.html', 'footer-placeholder');
+     </script>
+</body>
+</html>

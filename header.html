@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+    margin: 0;
+    font-family: 'Times New Roman', serif;
+}
+
+/* Header Top */
+.top-bar {
+    background-color: #2D4A47;
+    padding: 10px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.header-left { display: flex; align-items: center; }
+
+.logo { height: 50px; border-radius: 50%; margin-right: 20px; }
+
+.search-box {
+    background: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    width: 300px;
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+    margin-left: 10px;
+    width: 100%;
+}
+
+.top-nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 15px;
+}
+
+.cart { position: relative; }
+.badge {
+    background: #e74c3c;
+    font-size: 10px;
+    padding: 2px 5px;
+    border-radius: 50%;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+}
+
+/* Branding Area */
+.main-branding {
+    text-align: center;
+    padding: 20px 0;
+    position: relative;
+}
+
+.back-link {
+    position: absolute;
+    left: 40px;
+    top: 30px;
+    font-size: 14px;
+    cursor: pointer;
+}
+/* Hide all menus by default */
+.content-container {
+    display: none;
+    padding: 20px 5%;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    position: absolute; /* Keeps it below the nav without pushing content */
+    width: 90%;
+    left: 5%;
+    z-index: 100;
+}
+
+/* Layout for the brand columns */
+.menu-grid {
+    display: flex;
+    justify-content: flex-start;
+    gap: 60px;
+}
+
+.column { min-width: 130px; }
+
+.section b { display: block; margin-bottom: 8px; font-size: 16px; color: #000; }
+
+.section ul { list-style: none; padding: 0; margin: 0 0 20px 0; }
+
+.section li { font-size: 14px; color: #555; padding: 3px 0; cursor: pointer; }
+
+.section li:hover { color: #000; text-decoration: underline; }
+
+/* The Red Highlight for the active link */
+.tab-link.active {
+    color: #ff4d4d !important;
+}
+
+.category-bar a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    cursor: pointer; 
+}
+.category-bar{ display: flex; justify-content: space-around;}
+
+    </style>
+</head>
+<body>
+    <header>
+    <div class="top-bar">
+        <div class="header-left">
+            <a href="home.html"><img src="logo.png" alt="StepUp Logo" class="logo"></a>
+            <div class="search-box">
+                <i class="fa fa-search"></i>
+                <input type="text" placeholder="Search here">
+            </div>
+        </div>
+        <nav class="top-nav">
+            <a href="home.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="login.html">Log in</a>
+            <a href="cart.html" class="cart">Cart <i class="fa fa-shopping-cart"></i><span class="badge">1</span></a>
+        </nav>
+    </div>
+
+    <div class="main-branding">
+        <div class="back-link"><i class="fa fa-arrow-left"></i> Back</div>
+        <h1>StepUp.in</h1>
+    </div>
+
+    <nav class="category-bar">
+    <a href="women.html" class="tab-link" onclick="openTab(event, 'womensMenu')">Womens</a>
+    <a href="men.html" class="tab-link" onclick="openTab(event, 'mensMenu')">Mens</a>
+    <a href="kids.html" class="tab-link" onclick="openTab(event, 'kidsMenu')">Kids</a>
+    <a href="javascript:void(0)" class="tab-link" onclick="openTab(event, 'brandsMenu')">Brands</a>
+    <a href="javascript:void(0)" class="tab-link" onclick="openTab(event, 'offersMenu')">Offers</a>
+</nav>
+
+<div id="womensMenu" class="mega-menu content-container">
+    <div class="menu-grid">
+        <div class="column">
+            <div class="section">
+                <b>New Arrivals</b>
+                <ul>
+                    <li>View all</li>
+                </ul>
+            </div>
+        </div>
+        <div class="column">
+            <div class="section">
+                <b>Sandals</b>
+                <ul>
+                    <li>View all</li>
+                    <li>Flat</li>
+                    <li>Flip-flop</li>
+                    <li>Slider</li>
+                    <li>Strappy</li>
+                </ul>
+            </div>
+        </div>
+
+         <div class="column">
+            <div class="section">
+                <b>Trainers</b>
+                <ul>
+                    <li>View all</li>
+                    <li>Chunky</li>
+                    <li>Lace Up</li>
+                    <li>Slip on</li>
+                   
+                </ul>
+            </div>
+        </div>
+
+
+         <div class="column">
+            <div class="section">
+                <b>Canvas</b>
+                <ul>
+                    <li>View all</li>
+                    <li>Lace Up</li>
+                    <li>Slip On</li>
+                    
+                </ul>
+            </div>
+        </div>
+
+
+         <div class="column">
+            <div class="section">
+                <b>Shoes</b>
+                <ul>
+                    <li>View all</li>
+                    <li>Ballerina</li>
+                    <li>Brogue</li>
+                    <li>Flat</li>
+                    <li>Heel</li>
+                    <li>Leather</li>
+                    <li>Party</li>
+                    <li>School</li>
+                </ul>
+            </div>
+        </div>
+
+
+         <div class="column">
+            <div class="section">
+                <b>Safety Footwear</b>
+                <ul>
+                    <li>View all</li>
+                    
+                </ul>
+            </div>
+        </div>
+
+
+         <div class="column">
+            <div class="section">
+                <b>Boots</b>
+                <ul>
+                    <li>View all</li>
+                    <li>Ankle</li>
+                    <li>Biker</li>
+                    <li>Heel</li>
+                    <li>Knee</li>
+                    <li>High</li>
+                    <li>Lace Up</li>
+                    <li>Leather</li>
+                </ul>
+            </div>
+        </div>
+
+
+         <div class="column">
+            <div class="section">
+                <b>Slippers</b>
+                <ul>
+                    <li>View all</li>
+                    <li>Easy Fasten</li>
+                    <li>Full</li>
+                    <li>Moccasin</li>
+                    <li>Mule</li>
+                    <li>Slipper Boots</li>
+                </ul>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+<div id="mensMenu" class="mega-menu content-container">
+    <div class="menu-grid">
+       <div class="column">
+            <div class="section">
+                <b>New Arrivals</b>
+                <ul>
+                    <li>View all</li>
+                </ul>
+            </div>
+        </div>
+        <div class="column">
+            <div class="section">
+                <b>Sandals</b>
+                <ul>
+                    <li>View all</li>
+                    <li>Flat</li>
+                    <li>Flip-flop</li>
+                    <li>Slider</li>
+                    <li>Sport</li>
+                </ul>
+            </div>
+        </div>
+
+         <div class="column">
+            <div class="section">
+                <b>Trainers</b>
+                <ul>
+                    <li>View all</li>
+                    <li>Easy</li>
+                    <li>Faster</li>
+                    
+                </ul>
+            </div>
+        </div>
+
+
+         <div class="column">
+            <div class="section">
+                <b>Canvas</b>
+                <ul>
+                    <li>View all</li>
+                    <li>Lace Up</li>
+                    <li>Slip On</li>
+                    
+                </ul>
+            </div>
+        </div>
+
+
+         <div class="column">
+            <div class="section">
+                <b>Shoes</b>
+                <ul>
+                    <li>View all</li>
+                   
+                    <li>Brogue</li>
+                    <li>Casual</li>
+                    <li>Easy</li>
+                    <li>Fasten</li>
+                    <li>Lace Up</li>
+                    <li>Leather</li>
+                    <li>Loafer</li>
+                    <li>Oxford</li>
+                </ul>
+            </div>
+        </div>
+
+
+         <div class="column">
+            <div class="section">
+                <b>Safety Footwear</b>
+                <ul>
+                    <li>View all</li>
+                    <li>Boots</li>
+                    <li>Shoes</li>
+                    <li>Steel toe cap</li>
+                    <li>Trainers</li>
+                    
+                </ul>
+            </div>
+        </div>
+
+
+         <div class="column">
+            <div class="section">
+                <b>Boots</b>
+                <ul>
+                    <li>View all</li>
+                    <li>Ankle</li>
+                    <li>Chelsa</li>
+                    <li>Desert</li>
+                    <li>Lace Up</li>
+                    <li>Leather</li>
+                    <li>Pull on</li>
+                </ul>
+            </div>
+        </div>
+
+
+         <div class="column">
+            <div class="section">
+                <b>Slippers</b>
+                <ul>
+                    <li>View all</li>
+                    
+                    <li>Full</li>
+                    <li>Moccasin</li>
+                    <li>Mule</li>
+                   
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="kidsMenu" class="mega-menu content-container">
+    <div class="menu-grid">
+       <div class="column">
+            
+            <div class="section">
+                <b>Girls</b>
+                <ul>
+                    <li>View all</li>
+                    <li>Sandals</li>
+                    <li>Canvas</li>
+                    <li>Trainers</li>
+                    <li>Shoes</li>
+                    <li>Boots</li>
+                    <li>Wellies</li>
+                    <li>Slippers</li>
+                </ul>
+            </div>
+        </div>
+        <div class="column">
+            <div class="section">
+                <b>Girls Trending</b>
+                <ul>
+                    <li>Save</li>
+                    <li>New Arrivals</li>
+                    <li>Character Footwear</li>
+                    <li>Online exclusive</li>
+                    <li>Back to school</li>
+                </ul>
+            </div>
+            <div class="section">
+                <b>Back to schools</b>
+                <ul>
+                    <li>View all</li>
+                    <li>Girls School shoes</li>
+                    <li>Boys School shoes </li>
+                </ul>
+            </div>
+        </div>
+        <div class="column">
+            <div class="section">
+                <b>Canvas</b>
+                <ul>
+                    <li>View all</li>
+                    <li>Lace Up</li>
+                    <li>Slip on</li>
+                    
+                </ul>
+            </div>
+            <div class="section">
+                <b>Boys</b>
+                <ul>
+                    <li>View all</li>
+                    <li>Sandals</li>
+                    <li>Canvas</li>
+                    <li>Trainers</li>
+                    <li>Shoes</li>
+                    <li>Boots</li>
+                    <li>Wellies</li>
+                    <li>Slippers</li>
+                </ul>
+            </div>
+        </div>
+        <div class="column">
+            <div class="section">
+                <b>Safety Footwear</b>
+                <ul>
+                    <li>View all</li>
+                  
+                </ul>
+            </div>
+            <div class="section">
+                <b>Boys Trending</b>
+                <ul>
+                    <li>Save</li>
+                    <li>New arrivals</li>
+                    <li>Character</li>
+                    <li>Exclusive</li>
+                    <li>Online exclusive</li>
+                    <li>Back to school</li>
+                </ul>
+            </div>
+            <div class="section">
+                <b>Slippers</b>
+                <ul>
+                    <li>Boys slippers</li>
+                    <li>Girls Slippers</li>
+                   
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="brandsMenu" class="mega-menu content-container">
+    <div class="menu-grid">
+       <div class="column">
+            <div class="section">
+                <b>B</b>
+                <ul>
+                    <li>Barbie</li>
+                    <li>Beckett</li>
+                    <li>Bluey</li>
+                </ul>
+            </div>
+            <div class="section">
+                <b>C</b>
+                <ul>
+                    <li>Comfort Plus</li>
+                    <li>Comfy steps</li>
+                    <li>Crocs</li>
+                    <li>Cushion Walk</li>
+                </ul>
+            </div>
+        </div>
+        <div class="column">
+            <div class="section">
+                <b>D</b>
+                <ul>
+                    <li>Disney frozen</li>
+                    <li>Disney stitch</li>
+                    <li>Divaz</li>
+                    <li>Dunlop</li>
+                </ul>
+            </div>
+            <div class="section">
+                <b>E</b>
+                <ul>
+                    <li>EarthWorks</li>
+                </ul>
+            </div>
+        </div>
+        <div class="column">
+            <div class="section">
+                <b>H</b>
+                <ul>
+                    <li>Heart</li>
+                    <li>Heavenly feet</li>
+                    <li>Hobos</li>
+                    <li>Hush puppies</li>
+                </ul>
+            </div>
+            <div class="section">
+                <b>J</b>
+                <ul>
+                    <li>Jo & Joe</li>
+                    <li>JuJu</li>
+                </ul>
+            </div>
+        </div>
+        <div class="column">
+            <div class="section">
+                <b>K</b>
+                <ul>
+                    <li>Kickers</li>
+                    <li>Krush</li>
+                </ul>
+            </div>
+            <div class="section">
+                <b>L</b>
+                <ul>
+                    <li>Lambretta</li>
+                    <li>Lilley</li>
+                    <li>LoL</li>
+                    <li>Lotus</li>
+                    <li>Lunar</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="offersMenu" class="mega-menu content-container">
+    <div class="menu-grid">
+       <div class="column">
+            <div class="section">
+                
+                <ul>
+                    <li>Save</li>
+                    <li>Two pairs for thousand</li>
+                    <li>Clearance Outlet</li>
+                    <li>Boots Sale</li>
+                    <li>View all offers</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function openTab(evt, tabName) {
+    var i, content, tablinks;
+
+    // 1. Get all elements with class="content-container" and hide them
+    content = document.getElementsByClassName("content-container");
+    for (i = 0; i < content.length; i++) {
+        // If the menu is already open, clicking it again will close it
+        if (content[i].id === tabName && content[i].style.display === "block") {
+            content[i].style.display = "none";
+            evt.currentTarget.classList.remove("active");
+            return;
+        }
+        content[i].style.display = "none";
+    }
+
+    // 2. Get all elements with class="tab-link" and remove the class "active"
+    tablinks = document.getElementsByClassName("tab-link");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].classList.remove("active");
+    }
+
+    // 3. Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.classList.add("active");
+}
+
+// Close menus if user clicks outside the header
+window.onclick = function(event) {
+    if (!event.target.matches('.tab-link')) {
+        var dropdowns = document.getElementsByClassName("content-container");
+        var tabs = document.getElementsByClassName("tab-link");
+        for (var i = 0; i < dropdowns.length; i++) {
+            dropdowns[i].style.display = "none";
+        }
+        for (var j = 0; j < tabs.length; j++) {
+            tabs[j].classList.remove("active");
+        }
+    }
+}
+</script>
+</body>
+</html>

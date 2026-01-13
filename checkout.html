@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+    font-family: 'Times New Roman', serif;
+    background-color: #f4f4f4;
+    margin: 0;
+}
+
+.checkout-header h1 { text-align: center; padding: 20px 0; }
+
+.checkout-container {
+    display: flex;
+    max-width: 1000px;
+    margin: 0 auto 50px;
+    background: #fff;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+/* Sidebar Styling */
+.order-summary {
+    flex: 1;
+    background-color: #2D4A47;
+    color: white;
+    padding: 30px;
+}
+
+.item-preview { margin: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 20px; }
+.item-preview img { width: 100px; border-radius: 8px; margin-bottom: 10px; }
+.item-info p { font-size: 12px; margin: 5px 0; opacity: 0.9; }
+
+.summary-totals .row { display: flex; justify-content: space-between; margin: 10px 0; font-size: 14px; }
+.summary-totals .total { border-top: 1px solid white; padding-top: 10px; font-weight: bold; }
+
+/* Main Form Styling */
+.order-form { flex: 2; padding: 30px; background-color: #f9f9f9; }
+
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+.field.full { grid-column: span 2; }
+
+label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 5px; }
+input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+
+.payment-icons img { height: 25px; margin-right: 10px; margin-bottom: 15px; }
+
+.form-actions { display: flex; justify-content: space-between; margin-top: 30px; }
+
+.btn-cancel { background: #ccc; border: none; padding: 12px 40px; border-radius: 20px; cursor: pointer; }
+.btn-order { background: #2D4A47; color: white; border: none; padding: 12px 40px; border-radius: 20px; font-weight: bold; cursor: pointer; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .checkout-container { flex-direction: column; }
+    .form-grid { grid-template-columns: 1fr; }
+}
+    </style>
+</head>
+<body>
+    
+<div id="header-placeholder"></div>
+    <div class="checkout-wrapper">
+    <header class="checkout-header">
+        <h1>Checkout</h1>
+    </header>
+
+    <div class="checkout-container">
+        <aside class="order-summary">
+            <h2>Order Summary</h2>
+            <div class="item-preview">
+                <img src="cart.png" alt="Comfy Steps Shoe">
+                <div class="item-info">
+                    <h3>Comfy Steps</h3>
+                    <p>Harlan Mens Tan Boat Shoe</p>
+                    <p>Size: 41</p>
+                    <p>Quantity: 1</p>
+                    <p>MRP: ₹ 2,799</p>
+                </div>
+            </div>
+            <div class="summary-totals">
+                <div class="row"><span>Amount</span><span>₹ 2,799</span></div>
+                <div class="row"><span>Delivery fees</span><span>Free</span></div>
+                <div class="row total"><span>Total</span><span>₹ 2,799</span></div>
+            </div>
+        </aside>
+
+        <main class="order-form">
+            <h2>Complete Your Order</h2>
+            
+            <form>
+                <section>
+                    <h3>Personal Details</h3>
+                    <div class="form-grid">
+                        <div class="field"><label>First Name</label><input type="text" placeholder="Enter your first name"></div>
+                        <div class="field"><label>Last Name</label><input type="text" placeholder="Enter your last name"></div>
+                        <div class="field"><label>Email id</label><input type="email" placeholder="Enter your email"></div>
+                        <div class="field"><label>Phone Number</label><input type="tel" placeholder="Enter your phone no"></div>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Payment Details</h3>
+                    <div class="payment-icons">
+                        <img src="visa.png" alt="Visa"> <img src="gpay.png" alt="GPay">
+                    </div>
+                    <div class="form-grid">
+                        <div class="field"><label>Card Holder Name</label><input type="text" placeholder="Enter name"></div>
+                        <div class="field"><label>Card Number</label><input type="text" placeholder="Enter card number"></div>
+                        <div class="field"><label>CVV</label><input type="text" placeholder="Example: 411"></div>
+                        <div class="field"><label>Expiration Date</label><input type="text" placeholder="MM/YY"></div>
+                    </div>
+                    <div class="cod-option">
+                        <label><input type="radio" name="payment"> Cash on Delivery <span>ⓘ</span></label>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Shipping Address</h3>
+                    <div class="field full"><label>Address Line 1</label><input type="text" placeholder="Enter your address"></div>
+                    <div class="form-grid">
+                        <div class="field"><label>City</label><input type="text" placeholder="Your city"></div>
+                        <div class="field"><label>State</label><input type="text" placeholder="Your state"></div>
+                        <div class="field"><label>Landmark</label><input type="text" placeholder="Any landmark(famous place/road)"></div>
+                        <div class="field"><label>Pincode</label><input type="text" placeholder="Code"></div>
+                    </div>
+                </section>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-cancel">Cancel</button>
+                    <a href="order.html" type="submit" class="btn-order">Order Now</a>
+                </div>
+            </form>
+        </main>
+    </div>
+</div>
+
+<div id="footer-placeholder"></div>
+     <script>
+        function includeHTML(file, targetId) {
+    fetch(file)
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById(targetId).innerHTML = data;
+        })
+        .catch(error => console.error('Error loading HTML:', error));
+}
+
+// Call the function for the header and footer
+includeHTML('header.html', 'header-placeholder');
+includeHTML('footer.html', 'footer-placeholder');
+     </script>
+</body>
+</html>

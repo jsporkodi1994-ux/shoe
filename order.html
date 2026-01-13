@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+    font-family: 'Georgia', serif;
+    margin: 0;
+    background-color: #f0f0f0; /* Light background to highlight the card */
+  
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.confirmation-card {
+    background: white;
+    padding: 40px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+    max-width: 500px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Checkmark Icon Styling */
+.icon-container {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 25px;
+}
+
+.checkmark-circle {
+    width: 60px;
+    height: 60px;
+    background-color: #2D4A47; /* StepUp Primary Teal */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Text Styling */
+.thank-you {
+    font-size: 20px;
+    margin: 10px 0;
+    color: #333;
+}
+
+.order-status, .order-number {
+    font-size: 13px;
+    color: #666;
+    margin: 5px 0;
+}
+
+/* Button Group Styling */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.btn-secondary {
+    background: white;
+    border: 1px solid #333;
+    padding: 10px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    min-width: 140px;
+}
+
+.btn-primary {
+    background: #2D4A47;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    min-width: 140px;
+}
+
+.btn-primary:hover {
+    background-color: #3d5f5b;
+}
+
+.btn-secondary:hover {
+    background-color: #f9f9f9;
+}
+    </style>
+</head>
+<body>
+    
+<div id="header-placeholder"></div>
+    <div class="confirmation-overlay">
+    <div class="confirmation-card">
+        <div class="icon-container">
+            <div class="checkmark-circle">
+                <i class="fa fa-check"></i>
+            </div>
+            <div class="dots-decoration"></div>
+        </div>
+
+        <h2 class="thank-you">Thankyou for your ordering</h2>
+        <p class="order-status">We've received your order will ship in 5-7 business days.</p>
+        <p class="order-number">Your order number is <strong>#Bh2100006</strong></p>
+
+        <div class="button-group">
+            <button class="btn-secondary">View Order</button>
+            <a href="track.html" class="btn-primary">Track Order</a>
+        </div>
+    </div>
+</div>
+<div id="footer-placeholder"></div>
+     <script>
+        function includeHTML(file, targetId) {
+    fetch(file)
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById(targetId).innerHTML = data;
+        })
+        .catch(error => console.error('Error loading HTML:', error));
+}
+
+// Call the function for the header and footer
+includeHTML('header.html', 'header-placeholder');
+includeHTML('footer.html', 'footer-placeholder');
+     </script>
+</body>
+</html>

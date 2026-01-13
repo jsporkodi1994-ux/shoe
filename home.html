@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* General Setup */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Georgia', serif; /* Matching the brand's serif style */
+    color: #333;
+    line-height: 1.4;
+}
+
+.home-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Hero Banner */
+.hero-banner {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background-image: url('hero-shoes.jpg'); /* Replace with your image */
+    background-size: cover;
+    background-position: center;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end; /* Pushes content to the right */
+    padding-right: 50px;
+    color: white;
+}
+
+.banner-content {
+    max-width: 300px;
+    text-align: right;
+}
+
+.promo-text {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+}
+
+.shop-now-btn {
+    background: white;
+    color: black;
+    border: none;
+    padding: 10px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Carousel Dots */
+.carousel-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background: rgba(255,255,255,0.5);
+    border-radius: 50%;
+    border: 1px solid white;
+}
+
+.dot.active {
+    background: white;
+}
+
+/* Overview Section */
+.overview-section {
+    text-align: center;
+    padding: 50px 10%;
+}
+
+.overview-text {
+    font-size: 14px;
+    font-style: italic;
+    color: #444;
+}
+
+/* Category Selection */
+.selection-section {
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+.selection-section h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.category-grid {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.category-card {
+    flex: 1;
+    max-width: 300px;
+}
+
+.image-wrapper {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Keeps images perfectly square */
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin-bottom: 15px;
+}
+
+.image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.category-card p {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .category-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .hero-banner {
+        align-items: center;
+        padding-right: 0;
+        text-align: center;
+    }
+}
+
+.trending-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 24px;
+}
+
+/* Grid Layout for Products */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+/* Card Styling */
+.product-card {
+    text-align: center;
+}
+
+.product-image {
+    background-color: #f5f5f5; /* Light grey background from image */
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
+
+.product-image:hover {
+    transform: translateY(-5px);
+}
+
+.product-image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.product-info .name {
+    font-size: 13px;
+    margin: 5px 0;
+    line-height: 1.4;
+}
+
+.product-info .mrp {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* View All Button */
+.action-bar {
+    display: flex;
+    justify-content: flex-end; /* Align to the right like h2.png */
+    margin-bottom: 30px;
+}
+
+.view-all-btn {
+    background-color: #2D4A47;
+    color: white;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Promo Banner at Bottom */
+.promo-banner {
+    background-color: #2D4A47;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 4px;
+    position: relative;
+    font-size: 18px;
+    gap: 15px;
+}
+
+.promo-banner p {
+    margin: 0;
+}
+
+.close-icon {
+    position: absolute;
+    right: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    background: #FFD700; /* Yellow dot in the image */
+    color: black;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .product-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+    .product-grid { grid-template-columns: 1fr; }
+}
+    </style>
+</head>
+<body>
+    
+<div id="header-placeholder"></div>
+    <main class="home-container">
+    <section class="hero-banner">
+       <div class="carousel-slide">
+        <img src="h1.jpg" alt="Men's Office Shoes Banner">
+        <img src="h2.jpg" alt="Men's Office Shoes Banner">
+        <img src="h3.jpg" alt="Men's Office Shoes Banner">
+        <img src="h4.jpg" alt="Men's Office Shoes Banner">
+
+
+        <div class="banner-content">
+            <p class="promo-text">Men's wear high heel office shoe only 40% discount today only</p>
+            <button class="shop-now-btn">Shop Now</button>
+        </div>
+        <div class="carousel-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </section>
+
+    <section class="overview-section">
+        <h2>Overview</h2>
+        <p class="overview-text">
+            "Explore our curated selection of high-quality shoes for every occasion. From durable athletic shoes designed for peak performance to stylish casual sneakers and elegant dress shoes, we offer a diverse range of footwear to suit your needs. Our user-friendly interface makes it easy to browse our collection and find the perfect pair, while detailed product descriptions and high-quality images ensure you make an informed decision. Join our community of style and discover your next favorite shoe!"
+        </p>
+    </section>
+
+    <section class="selection-section">
+        <h2>What are you looking for?</h2>
+        <div class="category-grid">
+            <div class="category-card">
+                <div class="image-wrapper">
+                    <img src="men.png" alt="Mens Category">
+                </div>
+                <p>Mens</p>
+            </div>
+            <div class="category-card">
+                <div class="image-wrapper">
+                    <img src="women.png" alt="Womens Category">
+                </div>
+                <p>Womens</p>
+            </div>
+            <div class="category-card">
+                <div class="image-wrapper">
+                    <img src="kids.png" alt="Kids Category">
+                </div>
+                <p>Kids</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<section class="trending-container">
+    <h2 class="section-title">New & Trending</h2>
+
+    <div class="product-grid">
+        <div class="product-card">
+            <div class="product-image"><img src="h5.png" alt="Ophelia Silver"></div>
+            <div class="product-info">
+                <p class="name">Ophelia Womens Silver Diamante Heel</p>
+                <p class="mrp">MRP : ₹ 2,299</p>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="product-image"><img src="h6.jpg" alt="Billie Silver"></div>
+            <div class="product-info">
+                <p class="name">Billie Womens Silver Diamante Heel</p>
+                <p class="mrp">MRP : ₹ 3,000</p>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="product-image"><img src="h7.jpg" alt="Drew Blush"></div>
+            <div class="product-info">
+                <p class="name">Drew Womens Blush Diamante Slip On Shoe</p>
+                <p class="mrp">MRP : ₹ 2,399</p>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="product-image"><img src="h8.jpg" alt="Drew Navy"></div>
+            <div class="product-info">
+                <p class="name">Drew Womens Navy Diamante Slip On Shoe</p>
+                <p class="mrp">MRP : ₹ 1,299</p>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="product-image"><img src="h9.jpg" alt="Weaver Navy"></div>
+            <div class="product-info">
+                <p class="name">Weaver Mens Navy Lace Up Trainer</p>
+                <p class="mrp">MRP : ₹ 2,799</p>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="product-image"><img src="h10.jpg" alt="Weaver White"></div>
+            <div class="product-info">
+                <p class="name">Weaver Mens White Lace Up Trainer</p>
+                <p class="mrp">MRP : ₹ 2,259</p>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="product-image"><img src="h11.jpg" alt="Calista Pink"></div>
+            <div class="product-info">
+                <p class="name">Calista Girls Pink Daisy Print Sandal</p>
+                <p class="mrp">MRP : ₹ 2,899</p>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="product-image"><img src="h12.jpg" alt="Colby Blue"></div>
+            <div class="product-info">
+                <p class="name">Colby Boys Blue Dinosaur Canvas</p>
+                <p class="mrp">MRP : ₹ 3,299</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="action-bar">
+        <button class="view-all-btn">View all</button>
+    </div>
+
+    <div class="promo-banner">
+        <span class="icon">🎁</span>
+        <p>Get your first order with free gift & 50 % offer</p>
+        <span class="icon">🎁</span>
+        <span class="close-icon">✖</span>
+    </div>
+</section>
+
+<div id="footer-placeholder"></div>
+     <script>
+        function includeHTML(file, targetId) {
+    fetch(file)
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById(targetId).innerHTML = data;
+        })
+        .catch(error => console.error('Error loading HTML:', error));
+}
+
+// Call the function for the header and footer
+includeHTML('header.html', 'header-placeholder');
+includeHTML('footer.html', 'footer-placeholder');
+     </script>
+</body>
+</html>

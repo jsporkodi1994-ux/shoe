@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Base Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Georgia', serif; /* Matching the brand's serif font */
+    color: #333;
+    line-height: 1.6;
+}
+
+.contact-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* Top Section Layout */
+.contact-info-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 40px;
+}
+
+.info-content {
+    flex: 1;
+    padding-right: 40px;
+}
+
+.info-content h1 {
+    font-size: 28px;
+    margin-top: 0;
+}
+
+.info-group {
+    margin-bottom: 25px;
+}
+
+.info-group h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.info-group p {
+    margin: 2px 0;
+}
+
+.phone {
+    font-weight: normal;
+}
+
+.email-link {
+    margin-top: 20px;
+}
+
+.email-link a {
+    color: #333;
+    text-decoration: underline;
+}
+
+.info-banner img {
+    max-width: 500px;
+    height: auto;
+    border-radius: 4px;
+}
+
+.divider {
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin-bottom: 50px;
+}
+
+/* Form Styles */
+.enquiry-section {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.enquiry-section h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.form-group input, 
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #999;
+    border-radius: 4px;
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+    font-family: inherit;
+}
+
+/* Double column row for Email and Phone */
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+/* Send Button */
+.button-container {
+    text-align: left; /* Aligns button to the left like in the image */
+}
+
+.send-btn {
+    background-color: #2D4A47; /* Primary brand color */
+    color: white;
+    padding: 12px 40px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.send-btn:hover {
+    background-color: #1f3331;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .contact-info-section {
+        flex-direction: column;
+    }
+    .info-banner img {
+        max-width: 100%;
+        margin-top: 20px;
+    }
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+    </style>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <div class="contact-container">
+    <section class="contact-info-section">
+        <div class="info-content">
+            <h1>Contact Us</h1>
+            
+            <div class="info-group">
+                <h3>For Online Orders</h3>
+                <p>Inquiry/Complaint</p>
+                <p class="phone">9976357250</p>
+            </div>
+
+            <div class="info-group">
+                <p>Any other queries</p>
+                <p class="phone">9976357250</p>
+                <p class="phone">9976357250</p>
+                <p>10 AM-7.00 PM</p>
+            </div>
+
+            <p class="email-link">Email: <a href="mailto:customercarestepup.in@gmail.com">customercarestepup.in@gmail.com</a></p>
+        </div>
+
+        <div class="info-banner">
+            <img src="contact.PNG" alt="Stylish footwear display">
+        </div>
+    </section>
+
+    <hr class="divider">
+
+    <section class="enquiry-section">
+        <h2>Enquiry Form</h2>
+        <form id="enquiryForm">
+            <div class="form-group full-width">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="6"></textarea>
+            </div>
+
+            <div class="button-container">
+                <button type="submit" class="send-btn">Send</button>
+            </div>
+        </form>
+    </section>
+</div>
+<div id="footer-placeholder"></div>
+     <script>
+        function includeHTML(file, targetId) {
+    fetch(file)
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById(targetId).innerHTML = data;
+        })
+        .catch(error => console.error('Error loading HTML:', error));
+}
+
+// Call the function for the header and footer
+includeHTML('header.html', 'header-placeholder');
+includeHTML('footer.html', 'footer-placeholder');
+     </script>
+</body>
+</html>
